@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEET THE MINISTERS | Ministry of Age</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Specific styles for Ministers page */
+        .ministers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 100vh;
+            /* Full screen height */
+            width: 100%;
+        }
+
+        .minister-card {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .minister-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(100%) contrast(1.2);
+            /* Dramatic B&W look initially */
+        }
+
+        .minister-card:hover .minister-image {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(1.1);
+            /* Color on hover */
+        }
+
+        .minister-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 3rem 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+            text-align: center;
+        }
+
+        .minister-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .minister-subname {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.5rem;
+        }
+
+        .minister-bio {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .minister-card:hover .minister-bio {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Nav override for this page to be transparent/overlay */
+        nav {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+            border-bottom: none;
+        }
+
+        @media (max-width: 900px) {
+            .ministers-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .minister-card {
+                height: 80vh;
+            }
+
+            .minister-bio {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">MINISTRY OF AGE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="predict.html">The Predictor</a></li>
+            <li><a href="ministers.html" class="active" style="color: var(--primary-color);">Meet The Ministers</a></li>
+            <li><a href="how-it-works.html">Philosophy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="ministers-grid">
+        <!-- Gajanan Ismathu -->
+        <div class="minister-card">
+            <img src="images/Gajanan Ismathu.jpeg" alt="Gajanan Ismathu" class="minister-image">
+            <div class="minister-overlay">
+                <h2 class="minister-name">GAJANAN</h2>
+                <div class="minister-subname">Ismathu</div>
+                <p class="minister-bio">Architect of the algorithmic constitution and a pioneer in data sustainability.
+                </p>
+            </div>
+        </div>
+
+        <!-- Imesh Chavindu -->
+        <div class="minister-card">
+            <img src="images/Imesh Chavindu.jpeg" alt="Imesh Chavindu" class="minister-image">
+            <div class="minister-overlay">
+                <h2 class="minister-name">IMESH</h2>
+                <div class="minister-subname">Chavindu</div>
+                <p class="minister-bio">Curator of the deep learning models and guardian of the dataset integrity.</p>
+            </div>
+        </div>
+
+        <!-- Tabeetha Shanali -->
+        <div class="minister-card">
+            <img src="images/Tabeetha Shanali.jpeg" alt="Tabeetha Shanali" class="minister-image">
+            <div class="minister-overlay">
+                <h2 class="minister-name">TABEETHA</h2>
+                <div class="minister-subname">Shanali</div>
+                <p class="minister-bio">Strategist of the user experience, bridging the gap between biological
+                    complexity and elegance.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

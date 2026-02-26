@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Evaluation - Ministry of Crab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .eval-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: #111;
+            border: 1px solid #333;
+        }
+
+        .metric-card {
+            background: #000;
+            border: 1px solid var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+        }
+
+        .metric-label {
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            /* Match notebook vibe */
+            font-size: 0.9rem;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            text-align: right;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+        }
+
+        .compare-table th {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .loading {
+            text-align: center;
+            color: #888;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">MINISTRY OF AGE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="predict.html">Analyze</a></li>
+            <li><a href="how-it-works.html">Process</a></li>
+            <li><a href="evaluation.html" class="active">Evaluation</a></li>
+            <li><a href="ministers.html">Ministers</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-white">
+        <h1>Evaluation</h1>
+        <p>Verifying logic against the source of truth</p>
+    </div>
+
+    <div class="eval-container">
+        <div id="loading" class="loading">CALCULATING METRICS ON FULL DATASET...</div>
+
+        <div id="results" style="display: none;">
+            <div class="metric-card">
+                <div class="metric-value" id="maeValue">--</div>
+                <div class="metric-label">Overall Average Error (Years)</div>
+                <div style="color: #666; font-size: 0.8rem; margin-top: 0.5rem;">Target: ~1.46</div>
+            </div>
+
+            <h3
+                style="color: #fff; margin-bottom: 1rem; border-left: 3px solid var(--primary-color); padding-left: 1rem;">
+                Comparison Table (First 100 Rows)</h3>
+            <div style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Age (Actual)</th>
+                            <th>Predicted_Age</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Rows injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 MINISTRY OF AGE. ALL RIGHTS RESERVED.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/evaluation');
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Update MAE
+                    document.getElementById('maeValue').innerText = data.mae.toFixed(2); // "1.46"
+
+                    // Populate Table
+                    const tbody = document.getElementById('tableBody');
+                    data.comparisons.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.id}</td>
+                            <td>${row.age}</td>
+                            <td>${row.predicted_age.toFixed(6)}</td> 
+                        `; // 6 decimals to match notebook precision example (9.392216)
+                        tbody.appendChild(tr);
+                    });
+
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('results').style.display = 'block';
+                } else {
+                    document.getElementById('loading').innerText = 'Error: ' + (data.error || 'Failed to load evaluation');
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loading').innerText = 'Connection Error';
+            }
+        });
+    </script>
+</body>
+
+</html>

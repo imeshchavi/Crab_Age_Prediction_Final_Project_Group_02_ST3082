@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PREDICTOR | Ministry of Age</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">MINISTRY OF AGE</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="predict.html" class="active">The Predictor</a></li>
+            <li><a href="ministers.html">Meet The Ministers</a></li>
+            <li><a href="how-it-works.html">Philosophy</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="hero-white" style="padding: 4rem 5% 2rem; border-bottom: 5px solid #000;">
+        <h1>THE PREDICTOR</h1>
+        <p>Enter the specifics of your specimen</p>
+    </header>
+
+    <!-- Form Section -->
+    <section style="background-color: var(--bg-dark); padding: 2rem 5% 6rem; min-height: 80vh;">
+        <div class="predict-container">
+            <form id="predictForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Carapace
+                            Length (Feet)</label>
+                        <input type="number" id="length" step="0.0001" class="form-control" placeholder="1.4375"
+                            style="width: 100%; padding: 1rem; background: #111; border: 1px solid #333; color: #fff;"
+                            required>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Diameter
+                            (Feet)</label>
+                        <input type="number" id="diameter" step="0.0001" class="form-control" placeholder="1.1750"
+                            style="width: 100%; padding: 1rem; background: #111; border: 1px solid #333; color: #fff;"
+                            required>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Height
+                            (Feet)</label>
+                        <input type="number" id="height" step="0.0001" class="form-control" placeholder="0.4125"
+                            style="width: 100%; padding: 1rem; background: #111; border: 1px solid #333; color: #fff;"
+                            required>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Shucked
+                            Weight Ratio (Ounces)</label>
+                        <input type="number" id="shucked_weight_ratio" step="0.000001" class="form-control"
+                            placeholder="0.5005" min="0" max="1"
+                            style="width: 100%; padding: 1rem; background: #111; border: 1px solid #333; color: #fff;"
+                            required>
+                        <span
+                            style="display: block; color: #e03c3c; font-size: 0.75rem; margin-top: 0.4rem; letter-spacing: 0.04em;">⚠
+                            Value must be between 0 and 1</span>
+                        <p id="shucked-error"
+                            style="display:none; color:#e03c3c; font-size:0.82rem; margin-top:0.5rem; background:#2a0a0a; border:1px solid #e03c3c; border-radius:4px; padding:0.5rem 0.75rem;">
+                            ❌ Invalid value! Shucked Weight must be <strong>greater than 0</strong> and <strong>no more
+                                than 1</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary"
+                    style="width: 100%; background: var(--primary-color); border-color: var(--primary-color); color: #000; margin-top: 2rem;">ANALYZE
+                    SPECIMEN</button>
+            </form>
+
+            <div id="resultDisplay" class="result-display" style="margin-top: 3rem; display: none; text-align: center;">
+
+                <!-- Crab Image Card -->
+                <div style="
+                    position: relative;
+                    border-radius: 16px;
+                    overflow: hidden;
+                    border: 3px solid var(--primary-color, #c9a84c);
+                    box-shadow: 0 0 30px rgba(201,168,76,0.45), 0 0 70px rgba(201,168,76,0.15);
+                    max-width: 680px;
+                    margin: 0 auto 2rem auto;
+                ">
+                    <!-- Gradient overlay -->
+                    <div
+                        style="position:absolute; inset:0; background: linear-gradient(to top, rgba(0,0,0,0.85) 30%, transparent 70%); z-index:1;">
+                    </div>
+                    <img src="crab_result.png" alt="Specimen Crab"
+                        style="width:100%; height:320px; object-fit:cover; display:block; filter: brightness(0.85) saturate(1.2);">
+
+                    <!-- Overlay text -->
+                    <div style="position:absolute; bottom:0; left:0; right:0; z-index:2; padding: 1.5rem 2rem;">
+                        <p
+                            style="text-transform: uppercase; letter-spacing: 0.25em; color: var(--primary-color, #c9a84c); font-size: 0.75rem; margin: 0 0 0.25rem;">
+                            Estimated Maturity</p>
+                        <div id="ageValue" class="result-age"
+                            style="font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 0.5rem;">
+                            -- Months</div>
+                        <p id="ageDescription"
+                            style="font-style: italic; color: #f5e4b8; font-family: 'Playfair Display', serif; font-size: 1.05rem; margin:0;">
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Age Range Reference Table -->
+                <div style="
+                    max-width: 640px;
+                    margin: 0 auto;
+                    border: 1px solid #333;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    font-size: 0.88rem;
+                    box-shadow: 0 0 18px rgba(201,168,76,0.1);
+                ">
+                    <table style="width:100%; border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:#1a1a1a; border-bottom: 2px solid var(--primary-color, #c9a84c);">
+                                <th
+                                    style="padding:0.75rem 1.2rem; text-align:left; color: var(--primary-color, #c9a84c); text-transform:uppercase; letter-spacing:0.08em; font-size:0.75rem;">
+                                    Age Range</th>
+                                <th
+                                    style="padding:0.75rem 1.2rem; text-align:left; color: var(--primary-color, #c9a84c); text-transform:uppercase; letter-spacing:0.08em; font-size:0.75rem;">
+                                    Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom:1px solid #2a2a2a; background:#111;">
+                                <td style="padding:0.75rem 1.2rem; color:#aaa; white-space:nowrap;">&lt; 8 months</td>
+                                <td style="padding:0.75rem 1.2rem; color:#ccc;">Young Crab — Tender meat, but best left
+                                    to grow.</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid #2a2a2a; background:#151515;">
+                                <td style="padding:0.75rem 1.2rem; color:#aaa; white-space:nowrap;">8–11 months</td>
+                                <td style="padding:0.75rem 1.2rem; color:#ccc;">Prime Adult Crab — Perfect balance of
+                                    flavor.</td>
+                            </tr>
+                            <tr style="background:#111;">
+                                <td style="padding:0.75rem 1.2rem; color:#aaa; white-space:nowrap;">≥ 12 months</td>
+                                <td style="padding:0.75rem 1.2rem; color:#ccc;">Mature Giant — The prize of the ocean,
+                                    rich and substantial.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

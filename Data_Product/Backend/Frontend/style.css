@@ -1,0 +1,334 @@
+/* Ministry of Crab Inspired Theme - High Contrast Refinement */
+:root {
+    --primary-color: #DAA520;
+    /* Goldenrod / Ministry Gold */
+    --hover-color: #FFD700;
+    --bg-dark: #000000;
+    /* Pure Black */
+    --bg-white: #ffffff;
+    /* Pure White */
+    --bg-card: #111111;
+    --text-on-dark: #ffffff;
+    --text-on-white: #000000;
+    --text-muted: #cccccc;
+    --border-color: #333;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Navigation - Ministry Style: Black Bar, Gold Text */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: #000;
+    position: fixed;
+    /* Fixed header */
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 0.2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Simple crab icon using CSS shapes/unicode for now if image fails */
+.logo::before {
+    content: '🦀';
+    font-size: 1.5rem;
+    filter: hue-rotate(45deg);
+    /* Shift red to orange/gold-ish */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: #fff;
+    /* White links by default */
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+    /* Gold on hover */
+}
+
+/* Spacing content below fixed nav */
+body {
+    padding-top: 80px;
+}
+
+/* HERO SECTION - The "Ministry of Crab" Poster Style */
+.hero-split {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Section: White background, massive black serif text */
+.hero-white {
+    background-color: var(--bg-white);
+    color: var(--text-on-white);
+    padding: 8rem 5% 4rem;
+    text-align: center;
+    border-bottom: 20px solid #000;
+    /* Dramatic separation */
+}
+
+.hero-white h1 {
+    font-size: 7rem;
+    /* Massive title */
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin-bottom: 2rem;
+}
+
+.hero-white p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: #333;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Custom Buttons - High contrast boxy style */
+.btn-primary {
+    background-color: #000;
+    color: var(--primary-color);
+    padding: 1rem 2.5rem;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #000;
+}
+
+.btn-secondary {
+    /* Used for secondary actions */
+    background-color: transparent;
+    color: #000;
+    padding: 1rem 2.5rem;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Content Section - Dark background, white text ("The Declaration" style) */
+.content-dark {
+    background-color: var(--bg-dark);
+    color: var(--text-on-dark);
+    padding: 6rem 10%;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.content-text {
+    flex: 1;
+}
+
+.content-dark h2 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 1.5rem;
+}
+
+.content-dark p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.content-image {
+    flex: 1;
+    height: 400px;
+    background: url('https://images.unsplash.com/photo-1559742811-822873691df8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80') no-repeat center center/cover;
+    border: 1px solid #333;
+}
+
+/* Feature Grid (for "How it Works" etc) */
+.feature-section {
+    padding: 6rem 5%;
+    background-color: #111;
+    text-align: center;
+}
+
+.feature-section h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.feature-card {
+    border: 1px solid #333;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: var(--primary-color);
+    background-color: #000;
+}
+
+.feature-card h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+/* Predict Page Specifics */
+.predict-container {
+    background-color: #000;
+    border: 1px solid #333;
+    padding: 3rem;
+    margin: 4rem auto;
+    max-width: 600px;
+    box-shadow: 0 0 50px rgba(218, 165, 32, 0.1);
+}
+
+.form-control {
+    background-color: #111;
+    border: 1px solid #333;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+}
+
+.result-display {
+    border: 2px solid var(--primary-color);
+    background-color: rgba(218, 165, 32, 0.05);
+}
+
+.result-age {
+    color: var(--primary-color);
+    font-size: 4rem;
+}
+
+/* Footer */
+footer {
+    background-color: #000;
+    border-top: 1px solid #222;
+    padding: 3rem;
+    text-align: center;
+    color: #666;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-white h1 {
+        font-size: 3.5rem;
+    }
+
+    .content-dark {
+        flex-direction: column;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* Simplified mobile for now */
+}
